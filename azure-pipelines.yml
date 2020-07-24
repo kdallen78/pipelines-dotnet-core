@@ -16,9 +16,11 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-  - task: AzureWebApp@1
+
+- task: AzureRmWebAppDeployment@4
   inputs:
-    azureSubscription: '<Azure service connection>'
-    appName: '<Name of web app>'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip
-    
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'KDA IT Solutions - Production(c1c58434-9596-4b25-a458-966d0668589a)'
+    appType: 'webApp'
+    WebAppName: 'KDALAB'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
